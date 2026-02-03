@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    "sysoev.language-stylus",
+    "mrmlnc.vscode-scss",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

@@ -1,0 +1,384 @@
+// ============================================
+// УТИЛИТЫ И ХЕЛПЕРЫ
+// ============================================
+
+@use 'sass:meta';
+@use 'sass:map';
+@use './variables' as *;
+@use './functions' as *;
+@use './mixins' as *;
+
+// ============================================
+// DISPLAY УТИЛИТЫ
+// ============================================
+
+.d-none {
+  display: none !important;
+}
+.d-block {
+  display: block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.d-inline-flex {
+  display: inline-flex !important;
+}
+.d-grid {
+  display: grid !important;
+}
+
+// ============================================
+// FLEX УТИЛИТЫ
+// ============================================
+
+.flex-row {
+  flex-direction: row !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.justify-start {
+  justify-content: flex-start !important;
+}
+.justify-end {
+  justify-content: flex-end !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+.justify-around {
+  justify-content: space-around !important;
+}
+
+.align-start {
+  align-items: flex-start !important;
+}
+.align-end {
+  align-items: flex-end !important;
+}
+.align-center {
+  align-items: center !important;
+}
+.align-stretch {
+  align-items: stretch !important;
+}
+
+.flex-1 {
+  flex: 1 !important;
+}
+
+// ============================================
+// SPACING УТИЛИТЫ
+// ============================================
+
+@each $name, $value in $spacings {
+  // Margin
+  .m-#{$name} {
+    margin: $value !important;
+  }
+  .mt-#{$name} {
+    margin-top: $value !important;
+  }
+  .mr-#{$name} {
+    margin-right: $value !important;
+  }
+  .mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$name} {
+    margin-left: $value !important;
+  }
+  .mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$name} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+
+  // Padding
+  .p-#{$name} {
+    padding: $value !important;
+  }
+  .pt-#{$name} {
+    padding-top: $value !important;
+  }
+  .pr-#{$name} {
+    padding-right: $value !important;
+  }
+  .pb-#{$name} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$name} {
+    padding-left: $value !important;
+  }
+  .px-#{$name} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$name} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+// Auto margin
+.m-auto {
+  margin: auto !important;
+}
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+// ============================================
+// TEXT УТИЛИТЫ
+// ============================================
+
+.text-left {
+  text-align: left !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-truncate {
+  @include truncate;
+}
+
+@each $name, $value in $font-weights {
+  .fw-#{$name} {
+    font-weight: $value !important;
+  }
+}
+
+@each $name, $value in $font-sizes {
+  .fs-#{$name} {
+    font-size: $value !important;
+  }
+}
+
+// ============================================
+// COLOR УТИЛИТЫ
+// ============================================
+
+@each $name, $value in $colors {
+  @if meta.type-of($value) == 'map' {
+    @each $shade, $color in $value {
+      .text-#{$name}-#{$shade} {
+        color: $color !important;
+      }
+      .bg-#{$name}-#{$shade} {
+        background-color: $color !important;
+      }
+    }
+  } @else {
+    .text-#{$name} {
+      color: $value !important;
+    }
+    .bg-#{$name} {
+      background-color: $value !important;
+    }
+  }
+}
+
+// ============================================
+// BORDER УТИЛИТЫ
+// ============================================
+
+.border {
+  border: 1px solid color('gray', 300) !important;
+}
+.border-0 {
+  border: 0 !important;
+}
+.border-top {
+  border-top: 1px solid color('gray', 300) !important;
+}
+.border-right {
+  border-right: 1px solid color('gray', 300) !important;
+}
+.border-bottom {
+  border-bottom: 1px solid color('gray', 300) !important;
+}
+.border-left {
+  border-left: 1px solid color('gray', 300) !important;
+}
+
+@each $name, $value in $radius {
+  .rounded-#{$name} {
+    border-radius: $value !important;
+  }
+}
+
+// ============================================
+// SHADOW УТИЛИТЫ
+// ============================================
+
+@each $name, $value in $shadows {
+  .shadow-#{$name} {
+    box-shadow: $value !important;
+  }
+}
+
+// ============================================
+// POSITION УТИЛИТЫ
+// ============================================
+
+.position-static {
+  position: static !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.position-absolute {
+  position: absolute !important;
+}
+.position-fixed {
+  position: fixed !important;
+}
+.position-sticky {
+  position: sticky !important;
+}
+
+// ============================================
+// OVERFLOW УТИЛИТЫ
+// ============================================
+
+.overflow-auto {
+  overflow: auto !important;
+}
+.overflow-hidden {
+  overflow: hidden !important;
+}
+.overflow-visible {
+  overflow: visible !important;
+}
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
+// ============================================
+// VISIBILITY УТИЛИТЫ
+// ============================================
+
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+.visually-hidden {
+  @include visually-hidden;
+}
+
+// ============================================
+// WIDTH/HEIGHT УТИЛИТЫ
+// ============================================
+
+.w-25 {
+  width: 25% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-75 {
+  width: 75% !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.w-auto {
+  width: auto !important;
+}
+
+.h-25 {
+  height: 25% !important;
+}
+.h-50 {
+  height: 50% !important;
+}
+.h-75 {
+  height: 75% !important;
+}
+.h-100 {
+  height: 100% !important;
+}
+.h-auto {
+  height: auto !important;
+}
+
+// ============================================
+// CURSOR УТИЛИТЫ
+// ============================================
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.cursor-default {
+  cursor: default !important;
+}
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+// ============================================
+// АДАПТИВНЫЕ УТИЛИТЫ
+// ============================================
+
+@each $bp-name, $bp-value in $breakpoints {
+  @if $bp-value > 0 {
+    @include respond-to($bp-name) {
+      .d-#{$bp-name}-none {
+        display: none !important;
+      }
+      .d-#{$bp-name}-block {
+        display: block !important;
+      }
+      .d-#{$bp-name}-flex {
+        display: flex !important;
+      }
+      .d-#{$bp-name}-grid {
+        display: grid !important;
+      }
+    }
+  }
+}

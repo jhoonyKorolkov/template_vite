@@ -1,0 +1,125 @@
+@use './variables' as *;
+@use './functions' as *;
+@use './mixins' as *;
+
+// ============================================
+// ПРИМЕР: Реальный компонент с использованием
+// всех возможностей новой SCSS архитектуры
+// ============================================
+
+.product-card {
+  // Используем функции для значений
+  padding: spacing(6);
+  border-radius: radius('xl');
+  background: color('white');
+
+  // Миксин для тени с hover эффектом
+  @include card-shadow;
+
+  // Адаптивность
+  @include respond-to('md') {
+    padding: spacing(8);
+  }
+
+  &__image {
+    @include aspect-ratio(4, 3);
+    @include size(100%, auto);
+    border-radius: radius('lg');
+    overflow: hidden;
+    margin-bottom: spacing(4);
+
+    img {
+      @include size(100%);
+      object-fit: cover;
+      @include transition(transform);
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: spacing(3);
+  }
+
+  &__title {
+    font-size: font-size('xl');
+    font-weight: font-weight('bold');
+    color: color('dark');
+    @include line-clamp(2);
+  }
+
+  &__badge {
+    padding: spacing(1) spacing(3);
+    border-radius: radius('full');
+    font-size: font-size('xs');
+    font-weight: font-weight('semibold');
+    background: color('primary');
+    color: white;
+  }
+
+  &__description {
+    @include line-clamp(3);
+    color: color('gray', 600);
+    font-size: font-size('sm');
+    line-height: line-height('relaxed');
+    margin-bottom: spacing(4);
+  }
+
+  &__footer {
+    @include flex-between;
+    padding-top: spacing(4);
+    border-top: 1px solid color('gray', 200);
+  }
+
+  &__price {
+    font-size: font-size('2xl');
+    font-weight: font-weight('bold');
+    color: color('primary');
+  }
+
+  &__button {
+    @include button-base;
+    @include button-variant(color('primary'));
+    @include hover-lift;
+
+    padding: spacing(2) spacing(6);
+    border-radius: radius('full');
+  }
+
+  // Модификаторы
+  &--featured {
+    border: 2px solid color('primary');
+
+    .product-card__title {
+      @include text-gradient(color('primary'), color('secondary'));
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// Сетка продуктов
+.products-grid {
+  display: grid;
+  gap: spacing(6);
+  grid-template-columns: 1fr;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+    gap: spacing(8);
+  }
+
+  @include respond-to('xl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

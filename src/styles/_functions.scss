@@ -1,0 +1,86 @@
+// ============================================
+// ФУНКЦИИ ДЛЯ РАБОТЫ С ПЕРЕМЕННЫМИ
+// ============================================
+
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:color' as sass-color;
+@use './variables' as *;
+
+// Получение цвета из палитры
+@function color($name, $shade: null) {
+  @if $shade {
+    @return map.get(map.get($colors, $name), $shade);
+  }
+  @return map.get($colors, $name);
+}
+
+// Получение spacing значения
+@function spacing($size) {
+  @return map.get($spacings, $size);
+}
+
+// Получение font-size
+@function font-size($size) {
+  @return map.get($font-sizes, $size);
+}
+
+// Получение font-weight
+@function font-weight($weight) {
+  @return map.get($font-weights, $weight);
+}
+
+// Получение line-height
+@function line-height($height) {
+  @return map.get($line-heights, $height);
+}
+
+// Получение радиуса
+@function radius($size) {
+  @return map.get($radius, $size);
+}
+
+// Получение тени
+@function shadow($size) {
+  @return map.get($shadows, $size);
+}
+
+// Получение z-index
+@function z-index($layer) {
+  @return map.get($z-index, $layer);
+}
+
+// Получение transition времени
+@function transition($speed) {
+  @return map.get($transitions, $speed);
+}
+
+// Получение easing функции
+@function easing($type) {
+  @return map.get($easings, $type);
+}
+
+// Конвертация px в rem
+@function rem($pixels, $context: 16) {
+  @return calc($pixels / $context) * 1rem;
+}
+
+// Конвертация px в em
+@function em($pixels, $context: 16) {
+  @return calc($pixels / $context) * 1em;
+}
+
+// Затемнение цвета
+@function darken-color($color, $amount: 10%) {
+  @return sass-color.adjust($color, $lightness: -$amount);
+}
+
+// Осветление цвета
+@function lighten-color($color, $amount: 10%) {
+  @return sass-color.adjust($color, $lightness: $amount);
+}
+
+// Прозрачность цвета
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
