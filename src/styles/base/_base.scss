@@ -1,0 +1,397 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/component-mixins' as *;
+
+// ============================================
+// ТИПОГРАФИЯ
+// ============================================
+
+h1,
+.h1 {
+  @include type(px2rem(48), 1.2);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(6);
+  color: color('dark');
+
+  @include respond-max('md') {
+    @include type(px2rem(36), 1.2);
+    margin-bottom: spacing(4);
+  }
+
+  @include respond-max('sm') {
+    @include type(px2rem(28), 1.3);
+    margin-bottom: spacing(3);
+  }
+}
+
+h2,
+.h2 {
+  @include type(px2rem(36), 1.3);
+  font-weight: font-weight('semibold');
+  margin-bottom: spacing(5);
+  margin-top: spacing(10);
+  color: color('dark');
+
+  @include respond-max('md') {
+    @include type(px2rem(28), 1.3);
+    margin-bottom: spacing(4);
+    margin-top: spacing(8);
+  }
+
+  @include respond-max('sm') {
+    @include type(px2rem(24), 1.4);
+    margin-bottom: spacing(3);
+    margin-top: spacing(6);
+  }
+}
+
+h3,
+.h3 {
+  @include type(px2rem(28), 1.4);
+  font-weight: font-weight('semibold');
+  margin-bottom: spacing(4);
+  margin-top: spacing(8);
+  color: color('primary');
+
+  @include respond-max('md') {
+    @include type(px2rem(22), 1.4);
+    margin-bottom: spacing(3);
+    margin-top: spacing(6);
+  }
+
+  @include respond-max('sm') {
+    @include type(px2rem(20), 1.4);
+  }
+}
+
+h4,
+.h4 {
+  @include type(px2rem(24), 1.4);
+  font-weight: font-weight('medium');
+  margin-bottom: spacing(3);
+  margin-top: spacing(6);
+  color: color('secondary');
+
+  @include respond-max('md') {
+    @include type(px2rem(20), 1.4);
+  }
+
+  @include respond-max('sm') {
+    @include type(px2rem(18), 1.5);
+  }
+}
+
+h5,
+.h5 {
+  @include type(px2rem(20), 1.5);
+  font-weight: font-weight('medium');
+  margin-bottom: spacing(2);
+  margin-top: spacing(4);
+  color: color('secondary');
+
+  @include respond-max('sm') {
+    @include type(px2rem(16), 1.5);
+  }
+}
+
+h6,
+.h6 {
+  @include type(px2rem(16), 1.5);
+  font-weight: font-weight('medium');
+  margin-bottom: spacing(2);
+  margin-top: spacing(3);
+  color: color('secondary');
+  text-transform: uppercase;
+  letter-spacing: px2rem(1);
+}
+
+p,
+.text {
+  margin-bottom: spacing(4);
+  line-height: line-height('relaxed');
+  color: color('gray', 700);
+  font-size: font-size('base');
+
+  @include respond-max('sm') {
+    margin-bottom: spacing(3);
+  }
+}
+
+a {
+  color: color('primary');
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: darken-color(color('primary'), 10%);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid color('primary');
+    outline-offset: px2rem(2);
+  }
+}
+
+// Списки
+ul,
+ol {
+  margin: spacing(4) 0;
+  padding-left: spacing(6);
+
+  li {
+    margin-bottom: spacing(2);
+    line-height: line-height('relaxed');
+    color: color('gray', 700);
+  }
+
+  @include respond-max('sm') {
+    padding-left: spacing(5);
+  }
+}
+
+// ============================================
+// КНОПКИ
+// ============================================
+
+.btn {
+  @include btn(color('primary'), color('white'));
+  padding: spacing(3) spacing(6);
+  font-size: font-size('base');
+  font-weight: font-weight('medium');
+  border-radius: radius('md');
+  transition: all 0.2s ease;
+
+  &--small {
+    padding: spacing(2) spacing(4);
+    font-size: font-size('sm');
+  }
+
+  &--large {
+    padding: spacing(4) spacing(8);
+    font-size: font-size('lg');
+  }
+
+  &--secondary {
+    @include btn(color('secondary'), color('white'));
+  }
+
+  &--success {
+    @include btn(color('success'), color('white'));
+  }
+
+  &--danger {
+    @include btn(color('danger'), color('white'));
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid color('primary');
+    color: color('primary');
+
+    &:hover {
+      background: color('primary');
+      color: color('white');
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+// ============================================
+// LAYOUT КОМПОНЕНТЫ
+// ============================================
+
+.container {
+  padding: 0 spacing(6);
+  max-width: px2rem(1200);
+  margin: 0 auto;
+
+  @include respond-max('lg') {
+    max-width: 100%;
+    padding: 0 spacing(5);
+  }
+
+  @include respond-max('sm') {
+    padding: 0 spacing(4);
+  }
+
+  &--fluid {
+    max-width: 100%;
+  }
+
+  &--narrow {
+    max-width: px2rem(800);
+  }
+}
+
+.header {
+  @include flex-between;
+  padding: spacing(4) spacing(6);
+  border-bottom: 1px solid color('gray', 200);
+  background: color('white');
+  box-shadow: shadow('sm');
+
+  @include respond-max('sm') {
+    padding: spacing(3) spacing(4);
+  }
+
+  nav {
+    @include flex-center;
+    gap: spacing(6);
+
+    @include respond-max('md') {
+      gap: spacing(4);
+    }
+
+    @include respond-max('sm') {
+      gap: spacing(3);
+    }
+  }
+
+  a {
+    color: color('gray', 700);
+    font-weight: font-weight('medium');
+    font-size: font-size('base');
+    padding: spacing(2) spacing(3);
+    border-radius: radius('md');
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: color('primary');
+      background: color('gray', 100);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px solid color('primary');
+      outline-offset: px2rem(2);
+    }
+
+    &.active {
+      color: color('primary');
+      font-weight: font-weight('semibold');
+    }
+  }
+}
+
+.footer {
+  border-top: 1px solid color('gray', 200);
+  padding: spacing(8) spacing(6);
+  margin-top: spacing(16);
+  text-align: center;
+  color: color('gray', 600);
+  font-size: font-size('sm');
+  background: color('gray', 50);
+
+  @include respond-max('sm') {
+    padding: spacing(6) spacing(4);
+    margin-top: spacing(12);
+  }
+}
+
+// ============================================
+// КАРТОЧКИ
+// ============================================
+
+.card {
+  background: color('white');
+  border-radius: radius('lg');
+  padding: spacing(6);
+  box-shadow: shadow('md');
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: shadow('lg');
+    transform: translateY(px2rem(-4));
+  }
+
+  @include respond-max('sm') {
+    padding: spacing(4);
+  }
+
+  &__header {
+    margin-bottom: spacing(4);
+    padding-bottom: spacing(4);
+    border-bottom: 1px solid color('gray', 200);
+  }
+
+  &__body {
+    margin-bottom: spacing(4);
+  }
+
+  &__footer {
+    margin-top: spacing(4);
+    padding-top: spacing(4);
+    border-top: 1px solid color('gray', 200);
+  }
+}
+
+// ============================================
+// ФОРМЫ
+// ============================================
+
+.form-group {
+  margin-bottom: spacing(5);
+
+  @include respond-max('sm') {
+    margin-bottom: spacing(4);
+  }
+}
+
+.form-label {
+  display: block;
+  margin-bottom: spacing(2);
+  font-weight: font-weight('medium');
+  font-size: font-size('sm');
+  color: color('gray', 700);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  @include input-base;
+  width: 100%;
+
+  // Убираем стрелки для number input
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    opacity: 0;
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+}
+
+.form-textarea {
+  min-height: px2rem(120);
+  resize: vertical;
+}
+
+.form-error {
+  display: block;
+  margin-top: spacing(2);
+  color: color('danger');
+  font-size: font-size('sm');
+}
+
+// Floating label input
+.input-floating-wrapper {
+  @include input-floating-wrapper;
+
+  input {
+    @include input-floating;
+  }
+
+  label {
+    @include input-floating-label;
+  }
+}

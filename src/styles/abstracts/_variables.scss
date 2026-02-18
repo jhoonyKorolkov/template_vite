@@ -2,13 +2,18 @@
 // СИСТЕМА ДИЗАЙНА - ПЕРЕМЕННЫЕ
 // ============================================
 
+// Базовый размер шрифта для конвертации px -> rem
+$root-font-size: 16 !default;
+
 // Breakpoints для адаптивного дизайна
 $breakpoints: (
   'xs': 0,
   'sm': 576px,
+  'phone': 767px,
   'md': 768px,
   'lg': 992px,
   'xl': 1200px,
+  'tablet': 1240px,
   'xxl': 1400px,
 ) !default;
 
@@ -136,13 +141,20 @@ $shadows: (
 
 // Z-index слои
 $z-index: (
+  // Локальные слои (внутри компонентов)
+  'behind': -1,
+  'base': 0,
+  'above': 1,
+  'overlay': 10,
+
+  // Глобальные слои (для всего приложения)
   'dropdown': 1000,
   'sticky': 1020,
   'fixed': 1030,
   'modal-backdrop': 1040,
   'modal': 1050,
   'popover': 1060,
-  'tooltip': 1070,
+  'tooltip': 1070
 ) !default;
 
 // Transitions
@@ -161,7 +173,7 @@ $easings: (
 ) !default;
 
 // ============================================
-// БАЗОВЫЕ ПЕРЕМЕННЫЕ (для обратной совместимости)
+// БАЗОВЫЕ ПЕРЕМЕННЫЕ
 // ============================================
 
 $font-family:
@@ -171,12 +183,3 @@ $font-family:
 $color-border: #dee2e6 !default;
 $color-text: #343a40 !default;
 $color-bg: #ffffff !default;
-
-$spacing-xs: 0.5rem !default; // 8px
-$spacing-sm: 0.75rem !default; // 12px
-$spacing-md: 1rem !default; // 16px
-$spacing-lg: 1.5rem !default; // 24px
-$spacing-xl: 2.5rem !default; // 40px
-
-$radius-sm: 0.125rem !default; // 2px
-$radius-md: 0.375rem !default; // 6px

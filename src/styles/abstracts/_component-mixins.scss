@@ -1,0 +1,195 @@
+// ============================================
+// КОМПОНЕНТ-МИКСИНЫ
+// Переиспользуемые миксины для UI компонентов
+// ============================================
+
+@use './variables' as *;
+@use './functions' as *;
+@use './mixins' as *;
+
+// ============================================
+// КНОПКИ
+// ============================================
+
+// Основной миксин для кнопок (обновленная версия)
+@mixin btn(
+  $bg: var(--main, color('primary')),
+  $color: var(--text, color('white')),
+  $height: px2rem(64),
+  $padding-x: spacing(12),
+  $border-radius: px2rem(40)
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $height;
+  padding: 0 $padding-x;
+  background: $bg;
+  color: $color;
+  border: none;
+  border-radius: $border-radius;
+  font-weight: font-weight('bold');
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: fit-content;
+  transition: all 0.2s ease;
+  @include type(16, 24);
+
+  @include respond-max('tablet') {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    @include type(14, 24);
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
+    transform: translateY(px2rem(-1));
+  }
+
+  &:active:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 2px solid alpha($bg, 0.5);
+    outline-offset: px2rem(2);
+  }
+}
+
+// ============================================
+// FLOATING LABEL INPUT
+// ============================================
+
+// Контейнер для input с floating label
+@mixin input-floating-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+// Label для floating input
+@mixin input-floating-label {
+  position: absolute;
+  left: px2rem(20);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: font-size('base');
+  color: var(--text_gray, color('gray', 500));
+  transition: all 0.2s ease;
+  pointer-events: none;
+  background: transparent;
+  font-weight: font-weight('normal');
+
+  @include respond-max('sm') {
+    font-size: font-size('sm');
+  }
+}
+
+// Input с поддержкой floating label (улучшенная версия)
+@mixin input-floating($height: px2rem(64)) {
+  height: $height;
+  padding: px2rem(21) px2rem(20) px2rem(8);
+  transition: all 0.2s ease;
+  border-radius: radius('xl');
+  font-size: font-size('base');
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text, color('gray', 900));
+  border: 1px solid transparent;
+  width: 100%;
+
+  // Удаление стрелок у number input
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    opacity: 0;
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  // Floating label анимация
+  &:focus ~ label,
+  &:not(:placeholder-shown) ~ label,
+  &.has-value ~ label {
+    transform: translateY(px2rem(-24));
+    font-size: px2rem(12);
+    color: var(--main, color('primary'));
+    font-weight: font-weight('medium');
+  }
+
+  // Placeholder (скрываем по умолчанию)
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:focus::placeholder {
+    color: var(--text_gray, color('gray', 400));
+    @include type(14, 20);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--main, color('primary'));
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 3px alpha(var(--main, color('primary')), 0.1);
+  }
+
+  &:disabled {
+    border-color: color('gray', 300);
+    background: color('gray', 100);
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    ~ label {
+      color: color('gray', 400);
+      cursor: not-allowed;
+    }
+  }
+
+  &.error {
+    border-color: color('danger');
+
+    &:focus {
+      box-shadow: 0 0 0 3px alpha(color('danger'), 0.1);
+    }
+
+    ~ label {
+      color: color('danger');
+    }
+  }
+
+  @include respond-max('sm') {
+    padding: px2rem(18) px2rem(16) px2rem(6);
+    font-size: font-size('sm');
+  }
+}
+
+// ============================================
+// ГОТОВЫЕ КОМБИНАЦИИ
+// ============================================
+
+// Полный стек для floating input (wrapper + input + label)
+@mixin input-group-floating($height: px2rem(64)) {
+  .input-wrapper {
+    @include input-floating-wrapper;
+  }
+
+  input {
+    @include input-floating($height);
+  }
+
+  label {
+    @include input-floating-label;
+  }
+}

@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    {{> head title="Utility классы" description="Примеры использования utility
+    классов"}}
+    <style>
+      .demo-box {
+        padding: 16px;
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
+      .example-item {
+        padding: 12px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      code {
+        background: #e9ecef;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    {{> header}}
+    <main class="container">
+      <h1 class="mt-8 mb-6">Utility классы - Примеры использования</h1>
+      <p class="text-gray-600 mb-8">
+        Готовые классы для быстрой стилизации без написания CSS
+      </p>
+
+      <!-- Display утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Display утилиты</h2>
+        <div class="demo-box">
+          <div
+            class="d-flex justify-between align-center p-4 bg-primary text-white rounded-lg mb-3"
+          >
+            <span>d-flex + justify-between + align-center</span>
+            <button class="btn btn--small">Кнопка</button>
+          </div>
+          <code>.d-flex .justify-between .align-center</code>
+        </div>
+
+        <div class="demo-box">
+          <div
+            class="d-grid"
+            style="grid-template-columns: repeat(3, 1fr); gap: 16px"
+          >
+            <div class="p-4 bg-success text-white text-center rounded-md">
+              d-grid
+            </div>
+            <div class="p-4 bg-success text-white text-center rounded-md">
+              3 колонки
+            </div>
+            <div class="p-4 bg-success text-white text-center rounded-md">
+              auto
+            </div>
+          </div>
+          <code class="d-block mt-3">.d-grid (+ inline стили для grid)</code>
+        </div>
+
+        <div class="demo-box">
+          <div
+            class="d-inline-block p-3 bg-warning text-dark rounded-base mr-2"
+          >
+            Inline
+          </div>
+          <div
+            class="d-inline-block p-3 bg-warning text-dark rounded-base mr-2"
+          >
+            Block
+          </div>
+          <div class="d-inline-block p-3 bg-warning text-dark rounded-base">
+            Elements
+          </div>
+          <br />
+          <code class="d-block mt-3">.d-inline-block</code>
+        </div>
+      </section>
+
+      <!-- Flex утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Flex утилиты</h2>
+        <div class="demo-box">
+          <div
+            class="d-flex flex-column align-center p-4 bg-info text-white rounded-lg"
+          >
+            <div class="mb-2">Flex</div>
+            <div class="mb-2">Column</div>
+            <div>Layout</div>
+          </div>
+          <code class="d-block mt-3">.d-flex .flex-column .align-center</code>
+        </div>
+
+        <div class="demo-box">
+          <div
+            class="d-flex justify-around p-4 bg-secondary text-white rounded-lg"
+          >
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+          </div>
+          <code class="d-block mt-3">.d-flex .justify-around</code>
+        </div>
+      </section>
+
+      <!-- Spacing утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Spacing (margin & padding)</h2>
+        <div class="demo-box">
+          <div class="p-6 bg-primary text-white rounded-lg mb-3">
+            p-6 = padding: 24px
+          </div>
+          <div class="px-8 py-4 bg-success text-white rounded-lg mb-3">
+            px-8 py-4 = padding: 16px 32px
+          </div>
+          <div class="m-4 p-3 bg-danger text-white rounded-lg">
+            m-4 p-3 = margin: 16px, padding: 12px
+          </div>
+          <code class="d-block mt-3"
+            >.p-{0-20}, .m-{0-20}, .px-{0-20}, .py-{0-20}, .mx-{0-20},
+            .my-{0-20}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <div
+            class="mx-auto p-4 bg-warning text-dark rounded-lg text-center"
+            style="max-width: 500px"
+          >
+            mx-auto для центрирования блока
+          </div>
+          <code class="d-block mt-3"
+            >.mx-auto (margin-left: auto, margin-right: auto)</code
+          >
+        </div>
+      </section>
+
+      <!-- Text утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Text утилиты</h2>
+        <div class="demo-box">
+          <p class="text-left mb-2">text-left - выравнивание слева</p>
+          <p class="text-center mb-2">text-center - выравнивание по центру</p>
+          <p class="text-right mb-2">text-right - выравнивание справа</p>
+          <code class="d-block mt-3"
+            >.text-left, .text-center, .text-right</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <p class="text-uppercase mb-2">text-uppercase</p>
+          <p class="text-lowercase mb-2">TEXT-LOWERCASE</p>
+          <p class="text-capitalize mb-2">text capitalize every word</p>
+          <code class="d-block mt-3"
+            >.text-{uppercase|lowercase|capitalize}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <p class="fs-xs mb-2">fs-xs (12px) - очень мелкий текст</p>
+          <p class="fs-sm mb-2">fs-sm (14px) - мелкий текст</p>
+          <p class="fs-base mb-2">fs-base (16px) - базовый текст</p>
+          <p class="fs-lg mb-2">fs-lg (18px) - крупный текст</p>
+          <p class="fs-xl mb-2">fs-xl (20px) - очень крупный текст</p>
+          <p class="fs-2xl mb-2">fs-2xl (24px) - заголовок</p>
+          <code class="d-block mt-3"
+            >.fs-{xs|sm|base|lg|xl|2xl|3xl|4xl|5xl}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <p class="fw-light mb-2">fw-light (300)</p>
+          <p class="fw-normal mb-2">fw-normal (400)</p>
+          <p class="fw-medium mb-2">fw-medium (500)</p>
+          <p class="fw-semibold mb-2">fw-semibold (600)</p>
+          <p class="fw-bold mb-2">fw-bold (700)</p>
+          <p class="fw-extrabold mb-2">fw-extrabold (800)</p>
+          <code class="d-block mt-3"
+            >.fw-{light|normal|medium|semibold|bold|extrabold}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <p class="text-truncate" style="max-width: 300px">
+            text-truncate обрезает длинный текст с многоточием когда он не
+            помещается
+          </p>
+          <code class="d-block mt-3">.text-truncate</code>
+        </div>
+      </section>
+
+      <!-- Color утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Color утилиты</h2>
+        <div class="demo-box">
+          <div class="d-flex flex-wrap" style="gap: 8px">
+            <span class="px-4 py-2 bg-primary text-white rounded-base"
+              >bg-primary text-white</span
+            >
+            <span class="px-4 py-2 bg-secondary text-white rounded-base"
+              >bg-secondary text-white</span
+            >
+            <span class="px-4 py-2 bg-success text-white rounded-base"
+              >bg-success text-white</span
+            >
+            <span class="px-4 py-2 bg-danger text-white rounded-base"
+              >bg-danger text-white</span
+            >
+            <span class="px-4 py-2 bg-warning text-dark rounded-base"
+              >bg-warning text-dark</span
+            >
+            <span class="px-4 py-2 bg-info text-white rounded-base"
+              >bg-info text-white</span
+            >
+          </div>
+          <code class="d-block mt-3"
+            >.bg-{primary|secondary|success|danger|warning|info|light|dark}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <div class="d-flex flex-wrap" style="gap: 8px">
+            <span class="px-4 py-2 bg-gray-100 rounded-base">gray-100</span>
+            <span class="px-4 py-2 bg-gray-200 rounded-base">gray-200</span>
+            <span class="px-4 py-2 bg-gray-300 rounded-base">gray-300</span>
+            <span class="px-4 py-2 bg-gray-400 text-white rounded-base"
+              >gray-400</span
+            >
+            <span class="px-4 py-2 bg-gray-500 text-white rounded-base"
+              >gray-500</span
+            >
+            <span class="px-4 py-2 bg-gray-600 text-white rounded-base"
+              >gray-600</span
+            >
+            <span class="px-4 py-2 bg-gray-700 text-white rounded-base"
+              >gray-700</span
+            >
+            <span class="px-4 py-2 bg-gray-800 text-white rounded-base"
+              >gray-800</span
+            >
+            <span class="px-4 py-2 bg-gray-900 text-white rounded-base"
+              >gray-900</span
+            >
+          </div>
+          <code class="d-block mt-3"
+            >.bg-gray-{100-900}, .text-gray-{100-900}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <p class="text-primary mb-2">text-primary</p>
+          <p class="text-secondary mb-2">text-secondary</p>
+          <p class="text-success mb-2">text-success</p>
+          <p class="text-danger mb-2">text-danger</p>
+          <p class="text-warning mb-2">text-warning</p>
+          <p class="text-info mb-2">text-info</p>
+          <code class="d-block mt-3">.text-{color}</code>
+        </div>
+      </section>
+
+      <!-- Border & Rounded -->
+      <section class="mb-12">
+        <h2 class="mb-4">Border & Rounded утилиты</h2>
+        <div class="demo-box">
+          <div class="d-flex flex-wrap" style="gap: 12px">
+            <div class="p-4 border rounded-none bg-light">rounded-none</div>
+            <div class="p-4 border rounded-sm bg-light">rounded-sm</div>
+            <div class="p-4 border rounded-base bg-light">rounded-base</div>
+            <div class="p-4 border rounded-md bg-light">rounded-md</div>
+            <div class="p-4 border rounded-lg bg-light">rounded-lg</div>
+            <div class="p-4 border rounded-xl bg-light">rounded-xl</div>
+            <div class="p-4 border rounded-2xl bg-light">rounded-2xl</div>
+            <div class="p-4 border rounded-full bg-light">rounded-full</div>
+          </div>
+          <code class="d-block mt-3"
+            >.rounded-{none|sm|base|md|lg|xl|2xl|3xl|full}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <div class="p-4 border bg-light mb-3">border (все стороны)</div>
+          <div class="p-4 border-top bg-light mb-3">border-top</div>
+          <div class="p-4 border-bottom bg-light">border-bottom</div>
+          <code class="d-block mt-3"
+            >.border, .border-top, .border-right, .border-bottom, .border-left,
+            .border-0</code
+          >
+        </div>
+      </section>
+
+      <!-- Shadow утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Shadow утилиты</h2>
+        <div class="demo-box">
+          <div class="d-flex flex-wrap" style="gap: 16px">
+            <div class="p-4 shadow-sm bg-white rounded-lg">shadow-sm</div>
+            <div class="p-4 shadow-base bg-white rounded-lg">shadow-base</div>
+            <div class="p-4 shadow-md bg-white rounded-lg">shadow-md</div>
+            <div class="p-4 shadow-lg bg-white rounded-lg">shadow-lg</div>
+            <div class="p-4 shadow-xl bg-white rounded-lg">shadow-xl</div>
+            <div class="p-4 shadow-2xl bg-white rounded-lg">shadow-2xl</div>
+          </div>
+          <code class="d-block mt-3"
+            >.shadow-{sm|base|md|lg|xl|2xl|inner|none}</code
+          >
+        </div>
+      </section>
+
+      <!-- Position утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Position утилиты</h2>
+        <div class="demo-box">
+          <div
+            class="position-relative p-8 bg-gray-100 rounded-lg"
+            style="height: 200px"
+          >
+            <span
+              class="position-relative p-2 bg-primary text-white rounded-base"
+              >position-relative</span
+            >
+            <span
+              class="position-absolute p-2 bg-danger text-white rounded-base"
+              style="top: 10px; right: 10px"
+            >
+              position-absolute (top-right)
+            </span>
+            <span
+              class="position-absolute p-2 bg-success text-white rounded-base"
+              style="bottom: 10px; left: 10px"
+            >
+              position-absolute (bottom-left)
+            </span>
+          </div>
+          <code class="d-block mt-3"
+            >.position-{static|relative|absolute|fixed|sticky}</code
+          >
+        </div>
+      </section>
+
+      <!-- Width/Height утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Width/Height утилиты</h2>
+        <div class="demo-box">
+          <div class="w-25 p-3 bg-primary text-white rounded-base mb-2">
+            w-25 (25%)
+          </div>
+          <div class="w-50 p-3 bg-success text-white rounded-base mb-2">
+            w-50 (50%)
+          </div>
+          <div class="w-75 p-3 bg-warning text-dark rounded-base mb-2">
+            w-75 (75%)
+          </div>
+          <div class="w-100 p-3 bg-danger text-white rounded-base">
+            w-100 (100%)
+          </div>
+          <code class="d-block mt-3"
+            >.w-{25|50|75|100|auto}, .h-{25|50|75|100|auto}</code
+          >
+        </div>
+      </section>
+
+      <!-- Overflow & Visibility -->
+      <section class="mb-12">
+        <h2 class="mb-4">Overflow & Visibility</h2>
+        <div class="demo-box">
+          <div
+            class="overflow-hidden p-4 bg-gray-100 rounded-lg"
+            style="height: 100px"
+          >
+            <p>
+              overflow-hidden скрывает содержимое, которое выходит за границы.
+              Этот текст будет обрезан если он слишком длинный и не помещается в
+              контейнер. Ещё больше текста для демонстрации обрезки. И ещё
+              немного текста...
+            </p>
+          </div>
+          <code class="d-block mt-3"
+            >.overflow-{auto|hidden|visible|scroll}</code
+          >
+        </div>
+
+        <div class="demo-box">
+          <span class="visible p-2 bg-success text-white rounded-base mr-2"
+            >visible</span
+          >
+          <span class="invisible p-2 bg-danger text-white rounded-base mr-2"
+            >invisible (но занимает место)</span
+          >
+          <span class="visible p-2 bg-info text-white rounded-base"
+            >visible</span
+          >
+          <code class="d-block mt-3"
+            >.visible, .invisible, .visually-hidden</code
+          >
+        </div>
+      </section>
+
+      <!-- Cursor утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Cursor утилиты</h2>
+        <div class="demo-box">
+          <div class="d-flex" style="gap: 16px">
+            <button class="btn cursor-pointer">
+              cursor-pointer (наведи мышку)
+            </button>
+            <button class="btn cursor-not-allowed">cursor-not-allowed</button>
+            <span class="cursor-default p-3 bg-light rounded-base"
+              >cursor-default</span
+            >
+          </div>
+          <code class="d-block mt-3"
+            >.cursor-{pointer|default|not-allowed}</code
+          >
+        </div>
+      </section>
+
+      <!-- Адаптивные утилиты -->
+      <section class="mb-12">
+        <h2 class="mb-4">Адаптивные утилиты</h2>
+        <div class="demo-box">
+          <div
+            class="p-4 bg-primary text-white rounded-lg d-block d-md-none mb-3"
+          >
+            Виден только на мобильных (d-block d-md-none)
+          </div>
+          <div
+            class="p-4 bg-success text-white rounded-lg d-none d-md-block mb-3"
+          >
+            Виден только на планшетах и выше (d-none d-md-block)
+          </div>
+          <div
+            class="p-4 bg-warning text-dark rounded-lg d-none d-lg-flex justify-center"
+          >
+            Flex только на десктопах (d-none d-lg-flex)
+          </div>
+          <code class="d-block mt-3">.d-{breakpoint}-{display}</code>
+          <p class="mt-3 text-gray-600">
+            Breakpoints: xs, sm, phone, md, lg, xl, tablet, xxl
+          </p>
+        </div>
+      </section>
+
+      <!-- Комплексный пример -->
+      <section class="mb-12">
+        <h2 class="mb-4">Комплексный пример - Карточка продукта</h2>
+        <div class="demo-box">
+          <div
+            class="d-flex flex-column shadow-lg rounded-xl overflow-hidden bg-white"
+            style="max-width: 350px"
+          >
+            <div class="bg-gray-200 h-100" style="height: 200px">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=350&h=200&fit=crop"
+                alt="Кроссовки"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="fs-xl fw-bold mb-2">Nike Air Max</h3>
+              <p class="text-gray-600 fs-sm mb-4">
+                Стильные кроссовки для спорта и отдыха
+              </p>
+              <div class="d-flex justify-between align-center">
+                <span class="fs-2xl fw-bold text-primary">12,999 ₽</span>
+                <button class="btn btn--primary btn--small">Купить</button>
+              </div>
+            </div>
+          </div>
+          <code class="d-block mt-4">
+            .d-flex .flex-column .shadow-lg .rounded-xl .overflow-hidden
+            .bg-white<br />
+            .p-6 .fs-xl .fw-bold .mb-2 .text-gray-600 .fs-sm .mb-4<br />
+            .d-flex .justify-between .align-center .fs-2xl .text-primary
+          </code>
+        </div>
+      </section>
+
+      <!-- Grid пример -->
+      <section class="mb-16">
+        <h2 class="mb-4">Комплексный пример - Grid галерея</h2>
+        <div class="demo-box">
+          <div
+            class="d-grid"
+            style="
+              grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+              gap: 16px;
+            "
+          >
+            <div
+              class="p-6 bg-primary text-white text-center rounded-lg shadow-md"
+            >
+              Card 1
+            </div>
+            <div
+              class="p-6 bg-secondary text-white text-center rounded-lg shadow-md"
+            >
+              Card 2
+            </div>
+            <div
+              class="p-6 bg-success text-white text-center rounded-lg shadow-md"
+            >
+              Card 3
+            </div>
+            <div
+              class="p-6 bg-danger text-white text-center rounded-lg shadow-md"
+            >
+              Card 4
+            </div>
+            <div
+              class="p-6 bg-warning text-dark text-center rounded-lg shadow-md"
+            >
+              Card 5
+            </div>
+            <div
+              class="p-6 bg-info text-white text-center rounded-lg shadow-md"
+            >
+              Card 6
+            </div>
+          </div>
+          <code class="d-block mt-4">
+            .d-grid (+ grid-template-columns: repeat(auto-fit, minmax(150px,
+            1fr)))<br />
+            .p-6 .text-center .rounded-lg .shadow-md
+          </code>
+        </div>
+      </section>
+    </main>
+    {{> footer}} {{> scripts}}
+  </body>
+</html>

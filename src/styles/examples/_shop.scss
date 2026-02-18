@@ -1,0 +1,564 @@
+// ============================================
+// СТРАНИЦА МАГАЗИНА - ДЕМОНСТРАЦИЯ GRID МИКСИНОВ
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+.shop-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: spacing(8) spacing(6);
+
+  @include respond-max(tablet) {
+    padding: spacing(6) spacing(4);
+  }
+}
+
+// ============================================
+// HERO GRID - Демонстрация grid-span
+// ============================================
+.hero-grid {
+  @include grid(12, spacing(4));
+  margin-bottom: spacing(12);
+  min-height: 400px;
+
+  // Выделенный баннер занимает 8 колонок
+  &__featured {
+    @include grid-span(8, 2); // 8 колонок, 2 ряда
+    position: relative;
+    border-radius: radius('xl');
+    overflow: hidden;
+    background: linear-gradient(135deg, color('primary'), color('secondary'));
+
+    @include respond-max(tablet) {
+      @include grid-span(12, 1); // На планшетах на всю ширину
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+  }
+
+  &__content {
+    @include absolute-center;
+    text-align: center;
+    color: color('white');
+    z-index: 2;
+    width: 100%;
+    padding: spacing(6);
+
+    h1 {
+      @include type(48, 56);
+      font-weight: font-weight('bold');
+      margin-bottom: spacing(4);
+
+      @include respond-max(phone) {
+        @include type(32, 40);
+      }
+    }
+
+    p {
+      @include type(20, 28);
+      margin-bottom: spacing(6);
+
+      @include respond-max(phone) {
+        @include type(16, 24);
+      }
+    }
+  }
+
+  // Промо-блоки занимают по 4 колонки
+  &__promo {
+    @include grid-span(4, 1);
+    position: relative;
+    border-radius: radius('lg');
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform transition('base') easing('out');
+
+    @include respond-max(tablet) {
+      @include grid-span(6, 1); // На планшетах по половине
+    }
+
+    @include respond-max(phone) {
+      @include grid-span(12, 1); // На телефонах на всю ширину
+    }
+
+    &:hover {
+      transform: translateY(px2rem(-4));
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform transition('slow') easing('out');
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// ============================================
+// SHOP LAYOUT - Демонстрация grid-sidebar
+// ============================================
+.shop-layout {
+  @include grid-sidebar(280px, spacing(8));
+  align-items: start;
+  margin-bottom: spacing(12);
+
+  @include respond-max(lg) {
+    @include grid-sidebar(250px, spacing(6));
+  }
+}
+
+// ============================================
+// SIDEBAR - Фильтры
+// ============================================
+.shop-sidebar {
+  position: sticky;
+  top: spacing(4);
+  background: color('white');
+  padding: spacing(6);
+  border-radius: radius('lg');
+  box-shadow: shadow('base');
+
+  @include respond-max(md) {
+    position: static;
+    margin-bottom: spacing(6);
+  }
+
+  h3 {
+    @include type(20, 28);
+    font-weight: font-weight('bold');
+    margin-bottom: spacing(6);
+    color: color('gray', 900);
+  }
+
+  .filter-group {
+    margin-bottom: spacing(6);
+    padding-bottom: spacing(6);
+    border-bottom: 1px solid color('gray', 200);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h4 {
+      @include type(16, 24);
+      font-weight: font-weight('semibold');
+      margin-bottom: spacing(3);
+      color: color('gray', 800);
+    }
+
+    label {
+      display: block;
+      margin-bottom: spacing(2);
+      cursor: pointer;
+      @include type(14, 20);
+      color: color('gray', 700);
+
+      &:hover {
+        color: color('primary');
+      }
+
+      input {
+        margin-right: spacing(2);
+      }
+    }
+
+    input[type='range'] {
+      width: 100%;
+      margin: spacing(3) 0;
+    }
+
+    .price-range {
+      @include flex-between;
+      @include type(12, 16);
+      color: color('gray', 600);
+    }
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+// ============================================
+// SHOP CONTENT - Основной контент
+// ============================================
+.shop-content {
+  min-width: 0; // Важно для overflow
+}
+
+.shop-header {
+  @include flex-between;
+  margin-bottom: spacing(6);
+  flex-wrap: wrap;
+  gap: spacing(4);
+
+  h2 {
+    @include type(28, 36);
+    font-weight: font-weight('bold');
+    color: color('gray', 900);
+
+    .count {
+      @include type(18, 24);
+      color: color('gray', 500);
+      font-weight: font-weight('normal');
+    }
+  }
+
+  .sort-select {
+    padding: spacing(2) spacing(4);
+    border: 1px solid color('gray', 300);
+    border-radius: radius('md');
+    background: color('white');
+    @include type(14, 20);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: color('primary');
+    }
+  }
+}
+
+// ============================================
+// PRODUCTS GRID - Демонстрация grid-auto-fit
+// ============================================
+.products-grid {
+  @include grid-auto-fit(280px, spacing(6));
+  margin-bottom: spacing(8);
+
+  @include respond-max(phone) {
+    @include grid-auto-fit(100%, spacing(4));
+  }
+}
+
+// ============================================
+// PRODUCT CARD - Карточка товара
+// ============================================
+.product-card {
+  background: color('white');
+  border-radius: radius('lg');
+  overflow: hidden;
+  box-shadow: shadow('sm');
+  transition: all transition('base') easing('out');
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: shadow('lg');
+    transform: translateY(px2rem(-4));
+  }
+
+  // Выделенная карточка (занимает 2 места в grid)
+  &--featured {
+    @include grid-span(2, 1);
+
+    @include respond-max(tablet) {
+      @include grid-span(1, 1); // На планшетах обычный размер
+    }
+
+    .product-card__info {
+      padding: spacing(6);
+    }
+
+    .product-card__title {
+      @include type(24, 32);
+    }
+
+    .product-card__description {
+      display: block;
+      @include type(14, 20);
+      color: color('gray', 600);
+      margin: spacing(3) 0 spacing(4);
+    }
+  }
+
+  &__image {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: color('gray', 100);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform transition('slow') easing('out');
+    }
+
+    .wishlist-btn {
+      position: absolute;
+      top: spacing(3);
+      right: spacing(3);
+      @include size(px2rem(40));
+      @include flex-center;
+      background: alpha(color('white'), 0.9);
+      border: none;
+      border-radius: radius('full');
+      font-size: px2rem(20);
+      cursor: pointer;
+      transition: all transition('fast') easing('out');
+      z-index: 2;
+
+      &:hover {
+        background: color('white');
+        color: color('danger');
+        transform: scale(1.1);
+      }
+    }
+
+    .badge {
+      position: absolute;
+      top: spacing(3);
+      left: spacing(3);
+      padding: spacing(1) spacing(3);
+      border-radius: radius('full');
+      @include type(12, 16);
+      font-weight: font-weight('bold');
+      text-transform: uppercase;
+      z-index: 2;
+
+      &--sale {
+        background: color('danger');
+        color: color('white');
+      }
+
+      &--new {
+        background: color('success');
+        color: color('white');
+      }
+
+      &--hot {
+        background: color('warning');
+        color: color('gray', 900);
+      }
+    }
+  }
+
+  &:hover &__image img {
+    transform: scale(1.05);
+  }
+
+  &__info {
+    padding: spacing(4);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__title {
+    @include type(16, 22);
+    font-weight: font-weight('semibold');
+    color: color('gray', 900);
+    margin-bottom: spacing(2);
+    @include cropText(2);
+  }
+
+  &__category {
+    @include type(12, 16);
+    color: color('gray', 500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: spacing(2);
+  }
+
+  &__rating {
+    @include type(14, 20);
+    color: color('warning');
+    margin-bottom: spacing(3);
+
+    span {
+      color: color('gray', 500);
+      margin-left: spacing(1);
+    }
+  }
+
+  &__description {
+    display: none; // Показывается только в featured
+  }
+
+  &__price {
+    margin-top: auto;
+    margin-bottom: spacing(3);
+    @include flex-between;
+    align-items: center;
+
+    .price--old {
+      @include type(14, 20);
+      color: color('gray', 500);
+      text-decoration: line-through;
+    }
+
+    .price--current {
+      @include type(20, 28);
+      font-weight: font-weight('bold');
+      color: color('gray', 900);
+    }
+  }
+
+  .btn {
+    width: 100%;
+
+    &--small {
+      padding: spacing(2) spacing(4);
+      @include type(14, 20);
+    }
+  }
+}
+
+// ============================================
+// PAGINATION
+// ============================================
+.pagination {
+  @include flex-center;
+  gap: spacing(2);
+  margin-top: spacing(8);
+  flex-wrap: wrap;
+
+  &__btn {
+    padding: spacing(2) spacing(4);
+    border: 1px solid color('gray', 300);
+    background: color('white');
+    border-radius: radius('md');
+    @include type(14, 20);
+    cursor: pointer;
+    transition: all transition('fast') easing('out');
+
+    &:hover:not(:disabled) {
+      background: color('gray', 100);
+      border-color: color('primary');
+    }
+
+    &--active {
+      background: color('primary');
+      color: color('white');
+      border-color: color('primary');
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ============================================
+// BRANDS SECTION - Демонстрация grid-responsive
+// ============================================
+.brands-section {
+  padding: spacing(12) 0;
+  text-align: center;
+
+  h2 {
+    @include type(32, 40);
+    font-weight: font-weight('bold');
+    margin-bottom: spacing(8);
+    color: color('gray', 900);
+  }
+}
+
+.brands-grid {
+  @include grid-responsive(2, 3, 6, spacing(6));
+  // 2 колонки на мобильных, 3 на планшетах, 6 на десктопе
+
+  @include respond-max(phone) {
+    gap: spacing(4);
+  }
+}
+
+.brand-card {
+  @include grid-center;
+  padding: spacing(6);
+  background: color('white');
+  border: 1px solid color('gray', 200);
+  border-radius: radius('lg');
+  transition: all transition('base') easing('out');
+  cursor: pointer;
+  height: 120px;
+
+  &:hover {
+    border-color: color('primary');
+    box-shadow: shadow('md');
+    transform: translateY(px2rem(-2));
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity transition('base') easing('out');
+  }
+
+  &:hover img {
+    opacity: 1;
+  }
+}
+
+// ============================================
+// BADGE - Значки
+// ============================================
+.badge {
+  display: inline-block;
+  padding: spacing(1) spacing(2);
+  border-radius: radius('base');
+  @include type(11, 14);
+  font-weight: font-weight('bold');
+  text-transform: uppercase;
+  background: color('gray', 200);
+  color: color('gray', 800);
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+.btn {
+  display: inline-block;
+  padding: spacing(3) spacing(6);
+  border: none;
+  border-radius: radius('md');
+  @include type(16, 24);
+  font-weight: font-weight('semibold');
+  text-align: center;
+  cursor: pointer;
+  transition: all transition('base') easing('out');
+  text-decoration: none;
+
+  &--primary {
+    background: color('primary');
+    color: color('white');
+
+    &:hover {
+      background: darken-color(color('primary'), 10%);
+      transform: translateY(px2rem(-1));
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--secondary {
+    background: color('gray', 200);
+    color: color('gray', 800);
+
+    &:hover {
+      background: color('gray', 300);
+    }
+  }
+
+  &--small {
+    padding: spacing(2) spacing(4);
+    @include type(14, 20);
+  }
+}

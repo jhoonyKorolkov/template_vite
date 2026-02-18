@@ -4,8 +4,14 @@
 
 @use 'sass:map';
 @use 'sass:list';
+@use 'sass:math';
 @use 'sass:color' as sass-color;
 @use './variables' as *;
+
+// Конвертация px в rem
+@function px2rem($px) {
+  @return math.div($px, $root-font-size) * 1rem;
+}
 
 // Получение цвета из палитры
 @function color($name, $shade: null) {
@@ -58,16 +64,6 @@
 // Получение easing функции
 @function easing($type) {
   @return map.get($easings, $type);
-}
-
-// Конвертация px в rem
-@function rem($pixels, $context: 16) {
-  @return calc($pixels / $context) * 1rem;
-}
-
-// Конвертация px в em
-@function em($pixels, $context: 16) {
-  @return calc($pixels / $context) * 1em;
 }
 
 // Затемнение цвета

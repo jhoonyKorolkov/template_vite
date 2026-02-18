@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    {{> head title="Формы" description="Примеры форм с floating labels"}}
+  </head>
+  <body>
+    {{> header}}
+    <main class="page">
+      <div class="container">
+        <h1>Примеры форм</h1>
+
+        <!-- Обычные инпуты -->
+        <section>
+          <h2>Обычные инпуты</h2>
+          <div class="form-group">
+            <label class="form-label" for="input1">Email</label>
+            <input
+              type="email"
+              id="input1"
+              class="form-input"
+              placeholder="example@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input2">Пароль</label>
+            <input
+              type="password"
+              id="input2"
+              class="form-input"
+              placeholder="Введите пароль"
+            />
+          </div>
+        </section>
+
+        <!-- Floating label инпуты -->
+        <section style="margin-top: 48px">
+          <h2>Floating Label Inputs</h2>
+          <p class="text">
+            Label автоматически поднимается вверх при фокусе или когда поле
+            заполнено
+          </p>
+
+          <div style="display: grid; gap: 24px; max-width: 600px">
+            <!-- Email -->
+            <div class="input-floating-wrapper">
+              <input
+                type="email"
+                id="float-email"
+                placeholder="Введите email"
+              />
+              <label for="float-email">Email адрес</label>
+            </div>
+
+            <!-- Пароль -->
+            <div class="input-floating-wrapper">
+              <input
+                type="password"
+                id="float-password"
+                placeholder="Введите пароль"
+              />
+              <label for="float-password">Пароль</label>
+            </div>
+
+            <!-- Имя -->
+            <div class="input-floating-wrapper">
+              <input type="text" id="float-name" placeholder="Введите имя" />
+              <label for="float-name">Полное имя</label>
+            </div>
+
+            <!-- Телефон -->
+            <div class="input-floating-wrapper">
+              <input
+                type="tel"
+                id="float-phone"
+                placeholder="+7 (999) 123-45-67"
+              />
+              <label for="float-phone">Номер телефона</label>
+            </div>
+
+            <!-- Number input -->
+            <div class="input-floating-wrapper">
+              <input
+                type="number"
+                id="float-number"
+                placeholder="Введите число"
+              />
+              <label for="float-number">Количество</label>
+            </div>
+
+            <!-- Disabled input -->
+            <div class="input-floating-wrapper">
+              <input
+                type="text"
+                id="float-disabled"
+                placeholder="Disabled"
+                disabled
+                value="Это поле отключено"
+              />
+              <label for="float-disabled">Отключенное поле</label>
+            </div>
+
+            <!-- Error state -->
+            <div class="input-floating-wrapper">
+              <input
+                type="email"
+                id="float-error"
+                class="error"
+                value="invalid-email"
+                placeholder="Введите email"
+              />
+              <label for="float-error">Email с ошибкой</label>
+            </div>
+            <span class="form-error">Неверный формат email</span>
+          </div>
+        </section>
+
+        <!-- Кнопки -->
+        <section style="margin-top: 48px">
+          <h2>Кнопки</h2>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <button class="btn btn--primary">Отправить</button>
+            <button class="btn btn--secondary">Отменить</button>
+            <button class="btn btn--success">Сохранить</button>
+            <button class="btn btn--danger">Удалить</button>
+            <button class="btn btn--outline">Outline</button>
+          </div>
+        </section>
+
+        <!-- Live Demo -->
+        <section style="margin-top: 48px">
+          <h2>Живой пример формы регистрации</h2>
+          <div class="card" style="max-width: 500px">
+            <div class="card__header">
+              <h3>Создать аккаунт</h3>
+            </div>
+            <div class="card__body">
+              <form>
+                <div class="input-floating-wrapper" style="margin-bottom: 24px">
+                  <input type="text" id="reg-name" placeholder="Введите имя" />
+                  <label for="reg-name">Имя</label>
+                </div>
+
+                <div class="input-floating-wrapper" style="margin-bottom: 24px">
+                  <input
+                    type="email"
+                    id="reg-email"
+                    placeholder="Введите email"
+                  />
+                  <label for="reg-email">Email</label>
+                </div>
+
+                <div class="input-floating-wrapper" style="margin-bottom: 24px">
+                  <input
+                    type="password"
+                    id="reg-password"
+                    placeholder="Создайте пароль"
+                  />
+                  <label for="reg-password">Пароль</label>
+                </div>
+
+                <div class="input-floating-wrapper" style="margin-bottom: 32px">
+                  <input
+                    type="password"
+                    id="reg-confirm"
+                    placeholder="Повторите пароль"
+                  />
+                  <label for="reg-confirm">Подтверждение пароля</label>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--block">
+                  Зарегистрироваться
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    {{> footer}} {{> scripts}}
+
+    <script>
+      // Добавляем класс has-value для инпутов с начальным значением
+      document.addEventListener('DOMContentLoaded', () => {
+        const floatingInputs = document.querySelectorAll(
+          '.input-floating-wrapper input',
+        );
+
+        floatingInputs.forEach((input) => {
+          // Проверяем при загрузке
+          if (input.value) {
+            input.classList.add('has-value');
+          }
+
+          // Отслеживаем изменения
+          input.addEventListener('input', () => {
+            if (input.value) {
+              input.classList.add('has-value');
+            } else {
+              input.classList.remove('has-value');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

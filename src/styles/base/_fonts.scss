@@ -1,0 +1,30 @@
+// ============================================
+// ПОДКЛЮЧЕНИЕ ШРИФТОВ
+// ============================================
+
+// Пример подключения локального шрифта:
+// @font-face {
+//   font-family: 'MyFont';
+//   src: url('/fonts/MyFont-Regular.woff2') format('woff2'),
+//        url('/fonts/MyFont-Regular.woff') format('woff');
+//   font-weight: 400;
+//   font-style: normal;
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: 'MyFont';
+//   src: url('/fonts/MyFont-Bold.woff2') format('woff2'),
+//        url('/fonts/MyFont-Bold.woff') format('woff');
+//   font-weight: 700;
+//   font-style: normal;
+//   font-display: swap;
+// }
+
+// Пример импорта Google Fonts:
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// ============================================
+// ТЕКУЩИЕ ШРИФТЫ
+// ============================================
+// Добавьте свои @font-face правила ниже

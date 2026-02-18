@@ -1,11 +1,17 @@
-import './styles/app.scss';
+interface Island {
+  mount: (el: HTMLElement) => void;
+}
 
-const islands = import.meta.glob('./islands/*.ts', { eager: true });
+const islands = import.meta.glob<Island>('./islands/*.ts', { eager: true });
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll<HTMLElement>('[data-vue-island]').forEach((el) => {
     const name = el.dataset.vueIsland;
     if (!name) return;
-    islands[`./islands/${name}.ts`]!.mount(el);
+
+    const island = islands[`./islands/${name}.ts`];
+    if (island?.mount) {
+      island.mount(el);
+    }
   });
 });

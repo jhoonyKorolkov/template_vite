@@ -4,6 +4,7 @@
 
 @use 'sass:list';
 @use 'sass:map';
+@use 'sass:math';
 @use './variables' as *;
 @use './functions' as *;
 
@@ -47,6 +48,13 @@
   }
 }
 
+// Alias для respond-below (для совместимости)
+@mixin respond-max($breakpoint) {
+  @include respond-below($breakpoint) {
+    @content;
+  }
+}
+
 // ============================================
 // ФЛЕКСБОКС
 // ============================================
@@ -73,6 +81,108 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+// ============================================
+// GRID (CSS GRID)
+// ============================================
+
+// Базовая grid сетка с колонками
+@mixin grid($columns: 12, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Auto-fit grid (адаптивная сетка)
+@mixin grid-auto-fit($min-width: 250px, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $gap;
+}
+
+// Auto-fill grid (заполняет все пространство)
+@mixin grid-auto-fill($min-width: 250px, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+  gap: $gap;
+}
+
+// Grid с фиксированным количеством колонок
+@mixin grid-columns($columns, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Grid со строками
+@mixin grid-rows($rows, $gap: spacing(4)) {
+  display: grid;
+  grid-template-rows: repeat($rows, auto);
+  gap: $gap;
+}
+
+// Центрирование в grid
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Grid item span (растяжение элемента)
+@mixin grid-span($columns: 1, $rows: 1) {
+  grid-column: span $columns;
+  grid-row: span $rows;
+}
+
+// Адаптивная grid с breakpoints
+@mixin grid-responsive($mobile: 1, $tablet: 2, $desktop: 3, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat($mobile, 1fr);
+  gap: $gap;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat($tablet, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat($desktop, 1fr);
+  }
+}
+
+// Grid для карточек (частый паттерн)
+@mixin grid-cards($min-width: 280px, $max-cols: 4, $gap: spacing(6)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min($min-width, 100%), 1fr));
+  gap: $gap;
+
+  @supports (width: min($min-width, 100%)) {
+    grid-template-columns: repeat(auto-fit, minmax(min($min-width, 100%), 1fr));
+  }
+}
+
+// Sidebar layout (sidebar + content)
+@mixin grid-sidebar($sidebar-width: 250px, $gap: spacing(6)) {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr;
+  gap: $gap;
+
+  @include respond-max('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Holy Grail Layout (header, sidebar, content, aside, footer)
+@mixin grid-holy-grail($sidebar-width: 250px, $aside-width: 200px) {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr $aside-width;
+  grid-template-rows: auto 1fr auto;
+  gap: spacing(4);
+  min-height: 100vh;
+
+  @include respond-max('lg') {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
 }
 
 // ============================================
@@ -124,17 +234,33 @@
 // ТЕКСТ
 // ============================================
 
+// Типографика с line-height
+@mixin type($fs, $lh, $fw: font-weight('normal')) {
+  font-size: px2rem($fs);
+  line-height: math.div($lh, $fs);
+  font-weight: $fw;
+}
+
+// Обрезка текста одной строкой
 @mixin truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+// Обрезка текста с указанием количества строк
 @mixin line-clamp($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+// Alias для обратной совместимости
+@mixin cropText($num: 7) {
+  @include line-clamp($num);
 }
 
 @mixin text-gradient($colors...) {

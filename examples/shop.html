@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    {{> head title="Магазин товаров" }}
+  </head>
+  <body>
+    {{> header }}
+
+    <main class="shop-page">
+      <!-- Hero секция с большим баннером -->
+      <section class="hero-grid">
+        <div class="hero-grid__featured">
+          <img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8"
+            alt="Распродажа"
+          />
+          <div class="hero-grid__content">
+            <h1>Летняя распродажа</h1>
+            <p>Скидки до 50% на все товары</p>
+            <button class="btn btn--primary">Смотреть товары</button>
+          </div>
+        </div>
+        <div class="hero-grid__promo">
+          <img
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b"
+            alt="Новинки"
+          />
+          <span class="badge">Новинки</span>
+        </div>
+        <div class="hero-grid__promo">
+          <img
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d"
+            alt="Хиты"
+          />
+          <span class="badge badge--hot">Хиты продаж</span>
+        </div>
+      </section>
+
+      <!-- Фильтры и контент с сайдбаром -->
+      <section class="shop-layout">
+        <!-- Sidebar с фильтрами -->
+        <aside class="shop-sidebar">
+          <h3>Фильтры</h3>
+
+          <div class="filter-group">
+            <h4>Категории</h4>
+            <label><input type="checkbox" /> Одежда (45)</label>
+            <label><input type="checkbox" /> Обувь (28)</label>
+            <label><input type="checkbox" /> Аксессуары (16)</label>
+            <label><input type="checkbox" /> Электроника (12)</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Ценовой диапазон</h4>
+            <input type="range" min="0" max="10000" value="5000" />
+            <div class="price-range">
+              <span>0 ₽</span>
+              <span>10 000 ₽</span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Бренды</h4>
+            <label><input type="checkbox" /> Nike</label>
+            <label><input type="checkbox" /> Adidas</label>
+            <label><input type="checkbox" /> Puma</label>
+            <label><input type="checkbox" /> Reebok</label>
+          </div>
+
+          <button class="btn btn--secondary">Применить фильтры</button>
+        </aside>
+
+        <!-- Основной контент с товарами -->
+        <div class="shop-content">
+          <div class="shop-header">
+            <h2>Все товары <span class="count">(124)</span></h2>
+            <select class="sort-select">
+              <option>По популярности</option>
+              <option>Сначала дешевые</option>
+              <option>Сначала дорогие</option>
+              <option>Новинки</option>
+            </select>
+          </div>
+
+          <!-- Сетка товаров -->
+          <div class="products-grid">
+            <!-- Обычная карточка -->
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                  alt="Товар"
+                />
+                <button class="wishlist-btn">♡</button>
+                <span class="badge badge--sale">-30%</span>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Классические часы</h3>
+                <p class="product-card__category">Аксессуары</p>
+                <div class="product-card__rating">★★★★★ <span>(124)</span></div>
+                <div class="product-card__price">
+                  <span class="price--old">5 999 ₽</span>
+                  <span class="price--current">4 199 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <!-- Выделенная карточка (занимает 2 места) -->
+            <article class="product-card product-card--featured">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+                  alt="Хит продаж"
+                />
+                <span class="badge badge--hot">ХИТ ПРОДАЖ</span>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Кроссовки Nike Air Max</h3>
+                <p class="product-card__category">Обувь</p>
+                <div class="product-card__rating">
+                  ★★★★★ <span>(2,451)</span>
+                </div>
+                <p class="product-card__description">
+                  Легендарные кроссовки с инновационной амортизацией Air.
+                  Идеальны для спорта и повседневной носки.
+                </p>
+                <div class="product-card__price">
+                  <span class="price--current">12 999 ₽</span>
+                </div>
+                <button class="btn btn--primary">В корзину</button>
+              </div>
+            </article>
+
+            <!-- Еще несколько обычных карточек -->
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1572635196237-14b3f281503f"
+                  alt="Товар"
+                />
+                <button class="wishlist-btn">♡</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Женские солнцезащитные очки</h3>
+                <p class="product-card__category">Аксессуары</p>
+                <div class="product-card__rating">★★★★☆ <span>(89)</span></div>
+                <div class="product-card__price">
+                  <span class="price--current">2 499 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1556821840-3a63f95609a7"
+                  alt="Товар"
+                />
+                <span class="badge badge--new">NEW</span>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Рюкзак городской</h3>
+                <p class="product-card__category">Аксессуары</p>
+                <div class="product-card__rating">★★★★★ <span>(215)</span></div>
+                <div class="product-card__price">
+                  <span class="price--current">3 799 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f"
+                  alt="Товар"
+                />
+                <button class="wishlist-btn">♡</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Беспроводные наушники</h3>
+                <p class="product-card__category">Электроника</p>
+                <div class="product-card__rating">★★★★★ <span>(756)</span></div>
+                <div class="product-card__price">
+                  <span class="price--current">8 999 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea"
+                  alt="Товар"
+                />
+                <span class="badge badge--sale">-25%</span>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Спортивная футболка</h3>
+                <p class="product-card__category">Одежда</p>
+                <div class="product-card__rating">★★★★☆ <span>(342)</span></div>
+                <div class="product-card__price">
+                  <span class="price--old">1 999 ₽</span>
+                  <span class="price--current">1 499 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1585487000143-66b1058bc118"
+                  alt="Товар"
+                />
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Кожаная сумка</h3>
+                <p class="product-card__category">Аксессуары</p>
+                <div class="product-card__rating">★★★★★ <span>(98)</span></div>
+                <div class="product-card__price">
+                  <span class="price--current">6 999 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__image">
+                <img
+                  src="https://images.unsplash.com/photo-1514590353344-c6df7ebbf134"
+                  alt="Товар"
+                />
+                <button class="wishlist-btn">♡</button>
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__title">Умные часы</h3>
+                <p class="product-card__category">Электроника</p>
+                <div class="product-card__rating">★★★★☆ <span>(432)</span></div>
+                <div class="product-card__price">
+                  <span class="price--current">15 999 ₽</span>
+                </div>
+                <button class="btn btn--primary btn--small">В корзину</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- Пагинация -->
+          <div class="pagination">
+            <button class="pagination__btn" disabled>← Назад</button>
+            <button class="pagination__btn pagination__btn--active">1</button>
+            <button class="pagination__btn">2</button>
+            <button class="pagination__btn">3</button>
+            <button class="pagination__btn">4</button>
+            <span>...</span>
+            <button class="pagination__btn">12</button>
+            <button class="pagination__btn">Вперед →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Популярные бренды -->
+      <section class="brands-section">
+        <h2>Популярные бренды</h2>
+        <div class="brands-grid">
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=NIKE"
+              alt="Nike"
+            />
+          </div>
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=ADIDAS"
+              alt="Adidas"
+            />
+          </div>
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=PUMA"
+              alt="Puma"
+            />
+          </div>
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=REEBOK"
+              alt="Reebok"
+            />
+          </div>
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=UNDER+ARMOUR"
+              alt="Under Armour"
+            />
+          </div>
+          <div class="brand-card">
+            <img
+              src="https://placehold.co/120x60/000/fff?text=NEW+BALANCE"
+              alt="New Balance"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{> footer }} {{> scripts }}
+  </body>
+</html>

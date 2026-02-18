@@ -7,23 +7,25 @@
   <body>
     {{> header}}
     <main class="page">
-      <h1 class="h1">Добро пожаловать!</h1>
-      <p class="text">
-        Это шаблон проекта на <strong>Vite</strong> с использованием
-        <strong>Vue Islands</strong>, <strong>SCSS</strong> и
-        <strong>Handlebars</strong>.
-      </p>
+      <div class="container">
+        <h1 class="h1">Добро пожаловать!</h1>
+        <p class="text">
+          Это шаблон проекта на <strong>Vite</strong> с использованием
+          <strong>Vue Islands</strong>, <strong>SCSS</strong> и
+          <strong>Handlebars</strong>.
+        </p>
 
-      <h2 class="h2">Примеры компонентов:</h2>
+        <h2 class="h2">Примеры компонентов:</h2>
 
-      <h3>Counter (с начальным значением 5):</h3>
-      <div data-vue-island="Counter" data-props='{"start":5}'></div>
+        <h3>Counter (с начальным значением 5):</h3>
+        <div data-vue-island="Counter" data-props='{"start":5}'></div>
 
-      <h3 style="margin-top: 24px">Login Form:</h3>
-      <div
-        data-vue-island="LoginForm"
-        data-props='&#123;"actionUrl":"/api/login","method":"POST"&#125;'
-      ></div>
+        <h3 style="margin-top: 24px">Login Form:</h3>
+        <div
+          data-vue-island="LoginForm"
+          data-props='&#123;"actionUrl":"/api/login","method":"POST"&#125;'
+        ></div>
+      </div>
     </main>
     {{> footer}} {{> scripts}}
   </body>
