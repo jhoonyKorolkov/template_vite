@@ -1,0 +1,153 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+// ============================================
+// МОДАЛЬНОЕ ОКНО
+// ============================================
+
+// Overlay (подложка)
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: alpha(color('black'), 0.5);
+  @include flex-center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  @include transition(opacity, visibility);
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Модальное окно
+.modal {
+  position: relative;
+  background: color('white');
+  border-radius: radius('xl');
+  box-shadow: shadow('2xl');
+  max-width: px2rem(600);
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9) translateY(px2rem(-20));
+  @include transition(transform);
+
+  .modal-overlay.is-active & {
+    transform: scale(1) translateY(0);
+  }
+
+  @include respond-max('sm') {
+    width: 95%;
+    max-width: 100%;
+  }
+
+  // Заголовок модалки
+  &__header {
+    @include flex-between;
+    padding: spacing(6);
+    border-bottom: 1px solid color('gray', 200);
+
+    @include respond-max('sm') {
+      padding: spacing(4);
+    }
+  }
+
+  &__title {
+    font-size: font-size('2xl');
+    font-weight: font-weight('bold');
+    color: color('dark');
+    margin: 0;
+
+    @include respond-max('sm') {
+      font-size: font-size('xl');
+    }
+  }
+
+  // Кнопка закрытия
+  &__close {
+    @include size(px2rem(40));
+    @include flex-center;
+    background: transparent;
+    border: none;
+    border-radius: radius('full');
+    color: color('gray', 600);
+    cursor: pointer;
+    @include transition(background, color);
+
+    &:hover {
+      background: color('gray', 100);
+      color: color('gray', 900);
+    }
+
+    &:focus {
+      outline: 2px solid color('primary');
+      outline-offset: px2rem(2);
+    }
+
+    svg {
+      @include size(px2rem(24));
+    }
+  }
+
+  // Контент модалки
+  &__body {
+    padding: spacing(6);
+
+    @include respond-max('sm') {
+      padding: spacing(4);
+    }
+  }
+
+  // Футер с кнопками
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: spacing(3);
+    padding: spacing(6);
+    border-top: 1px solid color('gray', 200);
+
+    @include respond-max('sm') {
+      padding: spacing(4);
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  // Варианты модалок
+  &--small {
+    max-width: px2rem(400);
+  }
+
+  &--large {
+    max-width: px2rem(900);
+  }
+
+  &--full {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+// Утилиты для работы с модалками
+body.modal-open {
+  overflow: hidden;
+}
+
+// Анимация для backdrop при закрытии
+.modal-overlay.is-closing {
+  opacity: 0;
+
+  .modal {
+    transform: scale(0.9) translateY(px2rem(-20));
+  }
+}

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+  {{> head }}
+
+  <body>
+    {{> header }}
+
+    <main class="container">
+      <div style="padding: var(--spacing-8) 0">
+        <h1>Modal Component Example</h1>
+        <p style="margin: var(--spacing-4) 0; color: var(--gray-600)">
+          Примеры использования модального компонента с различными вариантами
+        </p>
+
+        <!-- Кнопки для открытия модалок -->
+        <div
+          style="
+            display: flex;
+            gap: var(--spacing-4);
+            flex-wrap: wrap;
+            margin: var(--spacing-6) 0;
+          "
+        >
+          <button class="btn btn--primary" onclick="openModal('modal1')">
+            Обычная модалка
+          </button>
+          <button class="btn btn--secondary" onclick="openModal('modal2')">
+            Маленькая модалка
+          </button>
+          <button class="btn btn--outline" onclick="openModal('modal3')">
+            Большая модалка
+          </button>
+        </div>
+
+        <!-- Code Examples -->
+        <div style="margin-top: var(--spacing-8)">
+          <h2>HTML Example</h2>
+          <pre
+            style="
+              background: var(--gray-100);
+              padding: var(--spacing-4);
+              border-radius: var(--radius-lg);
+              overflow-x: auto;
+            "
+          ><code>&lt;!-- Модальное окно --&gt;
+&lt;div class="modal-overlay" id="myModal"&gt;
+  &lt;div class="modal"&gt;
+    &lt;div class="modal__header"&gt;
+      &lt;h3 class="modal__title"&gt;Заголовок модалки&lt;/h3&gt;
+      &lt;button class="modal__close" onclick="closeModal('myModal')"&gt;
+        &lt;svg fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M6 18L18 6M6 6l12 12" /&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal__body"&gt;
+      &lt;p&gt;Контент модального окна&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="modal__footer"&gt;
+      &lt;button class="btn btn--outline" onclick="closeModal('myModal')"&gt;
+        Отмена
+      &lt;/button&gt;
+      &lt;button class="btn btn--primary"&gt;
+        Подтвердить
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          <h2 style="margin-top: var(--spacing-6)">JavaScript Example</h2>
+          <pre
+            style="
+              background: var(--gray-100);
+              padding: var(--spacing-4);
+              border-radius: var(--radius-lg);
+              overflow-x: auto;
+            "
+          ><code>function openModal(id) {
+  const overlay = document.getElementById(id);
+  overlay.classList.add('is-active');
+  document.body.classList.add('modal-open');
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  overlay.classList.add('is-closing');
+
+  setTimeout(() => {
+    overlay.classList.remove('is-active', 'is-closing');
+    document.body.classList.remove('modal-open');
+  }, 300); // Длительность анимации
+}</code></pre>
+
+          <h2 style="margin-top: var(--spacing-6)">Модификаторы</h2>
+          <ul
+            style="
+              list-style: disc;
+              padding-left: var(--spacing-6);
+              color: var(--gray-700);
+            "
+          >
+            <li>
+              <code>modal--small</code> - Маленькая модалка (max-width: 400px)
+            </li>
+            <li>
+              <code>modal--large</code> - Большая модалка (max-width: 900px)
+            </li>
+            <li>
+              <code>modal--full</code> - Полноэкранная модалка (95vw x 95vh)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Обычная модалка -->
+    <div class="modal-overlay" id="modal1">
+      <div class="modal">
+        <div class="modal__header">
+          <h3 class="modal__title">Обычная модалка</h3>
+          <button class="modal__close" onclick="closeModal('modal1')">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p>Это обычная модалка с дефолтными размерами (max-width: 600px).</p>
+          <p style="margin-top: var(--spacing-4)">
+            Она включает оверлей, красивую анимацию появления, кнопку закрытия и
+            футер с действиями.
+          </p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--outline" onclick="closeModal('modal1')">
+            Отмена
+          </button>
+          <button class="btn btn--primary" onclick="closeModal('modal1')">
+            Понятно
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Маленькая модалка -->
+    <div class="modal-overlay" id="modal2">
+      <div class="modal modal--small">
+        <div class="modal__header">
+          <h3 class="modal__title">Подтверждение</h3>
+          <button class="modal__close" onclick="closeModal('modal2')">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p>Вы уверены, что хотите удалить этот элемент?</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--outline" onclick="closeModal('modal2')">
+            Нет
+          </button>
+          <button class="btn btn--danger" onclick="closeModal('modal2')">
+            Да, удалить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Большая модалка -->
+    <div class="modal-overlay" id="modal3">
+      <div class="modal modal--large">
+        <div class="modal__header">
+          <h3 class="modal__title">Большая модалка</h3>
+          <button class="modal__close" onclick="closeModal('modal3')">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <h4>Подробная информация</h4>
+          <p style="margin: var(--spacing-4) 0">
+            Это большая модалка (max-width: 900px) для отображения большого
+            количества контента.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+          <div style="margin: var(--spacing-6) 0">
+            <h5>Список возможностей:</h5>
+            <ul
+              style="
+                list-style: disc;
+                padding-left: var(--spacing-6);
+                color: var(--gray-700);
+              "
+            >
+              <li>Адаптивный дизайн</li>
+              <li>Плавная анимация</li>
+              <li>Закрытие по оверлею</li>
+              <li>Блокировка скролла body</li>
+              <li>Доступность (фокус, outline)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--outline" onclick="closeModal('modal3')">
+            Закрыть
+          </button>
+          <button class="btn btn--primary" onclick="closeModal('modal3')">
+            Сохранить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {{> footer }} {{> scripts }}
+
+    <script>
+      // Функции для работы с модалками
+      function openModal(id) {
+        const overlay = document.getElementById(id);
+        overlay.classList.add('is-active');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeModal(id) {
+        const overlay = document.getElementById(id);
+        overlay.classList.add('is-closing');
+
+        setTimeout(() => {
+          overlay.classList.remove('is-active', 'is-closing');
+          document.body.classList.remove('modal-open');
+        }, 300);
+      }
+
+      // Закрытие по клику на оверлей
+      document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            closeModal(overlay.id);
+          }
+        });
+      });
+
+      // Закрытие по Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const activeModal = document.querySelector(
+            '.modal-overlay.is-active',
+          );
+          if (activeModal) {
+            closeModal(activeModal.id);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

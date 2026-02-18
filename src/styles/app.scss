@@ -23,10 +23,10 @@
 @use './components/components';
 
 // 6. Утилиты (генерируют классы)
-@use './utilities/utilities';
+// @use './utilities/utilities';
 
 // 7. Анимации
 @use './animations/animations';
 
 // 8. Примеры (только для dev режима, можно закомментировать в production)
-@use './examples/shop';
+// @use './examples/shop';
